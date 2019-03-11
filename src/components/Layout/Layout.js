@@ -14,7 +14,7 @@ const layout = (props) => (
             Whenever this component(Layout) is invoked 
         {props.children} will also be displayed and this is 
         just a reference to what is between the opening and 
-        closing tags of the component.*/}
+        closing tags of the component.(check app.js)*/}
             {props.children}
         </main>
     </Aux>
