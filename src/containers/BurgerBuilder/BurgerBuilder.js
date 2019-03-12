@@ -21,7 +21,8 @@ class BurgerBuilder extends Component {
             meat: 0
         },
         totalPrice: 4,
-        purchaseable: false
+        purchaseable: false,
+        purchaseMode: false
     }
     
     updatePurchaseState(ingredients) {
@@ -69,6 +70,10 @@ class BurgerBuilder extends Component {
         });
         this.updatePurchaseState(updatedIngredients);
     }
+
+    purchaseModeHandler = () => {
+        this.setState({purchaseMode: true});
+    }
     render(){
         /*update the copied object, and store boolean instead of numbers, to basically 
         evaluate if the button should be disabled or not. */
@@ -78,7 +83,7 @@ class BurgerBuilder extends Component {
         }
         return(
             <Aux>
-                <Modal> 
+                <Modal show={this.state.purchaseMode}> 
                     <OrderSummary ingredients={this.state.ingredients}/>
                 </Modal>
                 <Burger ingredients={this.state.ingredients}/>
@@ -87,6 +92,7 @@ class BurgerBuilder extends Component {
                     ingredientRemoved={this.removeIngredientHandler}
                     disabled={disabledInfo}
                     purchaseable={this.state.purchaseable}
+                    ordered={this.purchaseModeHandler}
                     price={this.state.totalPrice}/>
             </Aux>
         );
