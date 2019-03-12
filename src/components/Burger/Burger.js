@@ -24,7 +24,6 @@ such as key='cheese5' and types such as type='cheese'
     }).reduce((acc, curr) => {
         return acc.concat(curr);
     }, []);
-    console.log(transformedIngredients);
 
     if(transformedIngredients.length === 0 ){
         transformedIngredients = <p>Please start adding ingredients!</p>
