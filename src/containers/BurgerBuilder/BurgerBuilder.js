@@ -79,6 +79,10 @@ class BurgerBuilder extends Component {
         this.setState({purchaseMode: false});
     }
 
+    purchaseContinueHandler = () => {
+        alert('You continue!');
+    }
+
     render(){
         /*update the copied object, and store boolean instead of numbers, to basically 
         evaluate if the button should be disabled or not. */
@@ -89,7 +93,11 @@ class BurgerBuilder extends Component {
         return(
             <Aux>
                 <Modal show={this.state.purchaseMode} modalClosed={this.purchaseModeCancelHandler}> 
-                    <OrderSummary ingredients={this.state.ingredients}/>
+                    <OrderSummary 
+                        ingredients={this.state.ingredients}
+                        purchaseCancelled={this.purchaseModeCancelHandler}
+                        purchaseContinued={this.purchaseContinueHandler}
+                    />
                 </Modal>
                 <Burger ingredients={this.state.ingredients}/>
                 <BuildControls
