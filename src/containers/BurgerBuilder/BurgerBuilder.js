@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Aux from '../../hoc/Aux';
+import React, { Component } from 'react';
+import Aux from '../../hoc/Auxiliary';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
@@ -14,7 +14,7 @@ const INGREDIENT_CLASSES = {
 
 class BurgerBuilder extends Component {
     state = {
-        ingredients : {
+        ingredients: {
             salad: 0,
             bacon: 0,
             cheese: 0,
@@ -24,8 +24,8 @@ class BurgerBuilder extends Component {
         purchaseable: false,
         purchaseMode: false
     }
-    
-    updatePurchaseState(ingredients) {
+
+    updatePurchaseState(ingredients) {
         const sum = Object.keys(ingredients)
             .map(igKey => {
                 return ingredients[igKey];
@@ -33,7 +33,7 @@ class BurgerBuilder extends Component {
             .reduce((acc, currVal) => {
                 return acc + currVal;
             }, 0);
-        this.setState({purchaseable: sum > 0});
+        this.setState({ purchaseable: sum > 0 });
     }
 
     addIngredientHandler = (type) => {
@@ -54,7 +54,7 @@ class BurgerBuilder extends Component {
 
     removeIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
-        if(oldCount <= 0){
+        if (oldCount <= 0) {
             return;
         }
         const updatedCount = oldCount - 1;
@@ -72,42 +72,42 @@ class BurgerBuilder extends Component {
     }
 
     purchaseModeHandler = () => {
-        this.setState({purchaseMode: true});
+        this.setState({ purchaseMode: true });
     }
 
     purchaseModeCancelHandler = () => {
-        this.setState({purchaseMode: false});
+        this.setState({ purchaseMode: false });
     }
 
     purchaseContinueHandler = () => {
         alert('You continue!');
     }
 
-    render(){
+    render() {
         /*update the copied object, and store boolean instead of numbers, to basically 
         evaluate if the button should be disabled or not. */
-        const disabledInfo = {...this.state.ingredients};
-        for(let key in disabledInfo){
+        const disabledInfo = { ...this.state.ingredients };
+        for (let key in disabledInfo) {
             disabledInfo[key] = disabledInfo[key] <= 0;
         }
-        return(
+        return (
             <Aux>
-                <Modal show={this.state.purchaseMode} modalClosed={this.purchaseModeCancelHandler}> 
-                    <OrderSummary 
+                <Modal show={this.state.purchaseMode} modalClosed={this.purchaseModeCancelHandler}>
+                    <OrderSummary
                         ingredients={this.state.ingredients}
                         price={this.state.totalPrice.toFixed(2)}
                         purchaseCancelled={this.purchaseModeCancelHandler}
                         purchaseContinued={this.purchaseContinueHandler}
                     />
                 </Modal>
-                <Burger ingredients={this.state.ingredients}/>
+                <Burger ingredients={this.state.ingredients} />
                 <BuildControls
                     ingredientAdded={this.addIngredientHandler}
                     ingredientRemoved={this.removeIngredientHandler}
                     disabled={disabledInfo}
                     purchaseable={this.state.purchaseable}
                     ordered={this.purchaseModeHandler}
-                    price={this.state.totalPrice}/>
+                    price={this.state.totalPrice} />
             </Aux>
         );
     }

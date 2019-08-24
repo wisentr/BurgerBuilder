@@ -1,5 +1,5 @@
 import React from 'react';
-import Aux from '../../hoc/Aux';
+import Aux from '../../hoc/Auxiliary';
 import classes from './Layout.module.css';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 
@@ -7,7 +7,7 @@ const layout = (props) => (
     <Aux>
         <Toolbar />
         <main className={classes.Content}>
-                {/*Component we wrap with this layout.. 
+            {/*Component we wrap with this layout.. 
                 About props.children -->
                 The React docs say that you can use props.children on 
             components that represent ‘generic boxes’ and that ‘don’t 
@@ -16,7 +16,7 @@ const layout = (props) => (
             {props.children} will also be displayed and this is 
             just a reference to what is between the opening and 
             closing tags of the component.(check app.js)*/}
-                {props.children}
+            {props.children}
         </main>
     </Aux>
 );
